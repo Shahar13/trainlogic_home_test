@@ -1,0 +1,142 @@
+<html>
+<title>Home test - Shahar Haramati</title>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <style>
+        .wrap1 {
+        }
+        
+        .wrap2 {
+            display: none;
+        }
+        
+        .wrap3 {
+            display: none;
+        }
+        
+        div {
+            cursor: pointer;
+        }
+        
+        .highlighted {
+            background: lightblue;
+        }
+        
+        .second_list {
+            margin-left: 20px;
+        }
+        
+        .third_list {
+            margin-left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        Contact Tree
+    </h1>
+    <div id="contacts">
+    </div>
+
+
+    <script>
+        var contactsList = [
+            {
+                id: 1,
+                name: "Friends",
+                type: "Group",
+                contacts: [
+                    {
+                        id: 2,
+                        name: "Udi",
+                        type: "Contact"
+                    },
+                    {
+                        id: 3,
+                        name: "Tommy",
+                        type: "Contact"
+                    },
+                    {
+                        id: 6,
+                        name: "Old Friends",
+                        type: "Group",
+                        contacts: [
+                            {
+                                id: 7,
+                                name: "Itay",
+                                type: "Contact"
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
+                id: 4,
+                name: "Family",
+                type: "Group",
+                contacts: [
+                    {
+                        id: 5,
+                        name: "Roni",
+                        type: "Contact"
+                    },
+                ]
+            },
+            {
+                id: 8,
+                name: "Dan",
+                type: "Contact"
+            },
+        ];
+
+        var html = '';
+        $.each(contactsList, function (i1, list_1) {
+            html += '<div class=\'wrap1\'>';
+            html += '<div class=\'first_list\' id=' + list_1.id + ' >' + list_1.name + '</div>';
+
+            if (list_1.hasOwnProperty('contacts')) {
+
+                html += '<div class=\'wrap2\'>';
+                $.each(list_1.contacts, function (i1, list_2) {
+                    html += '<div class=\'second_list\' id=' + list_2.id + ' >' + list_2.name + '</div>';
+
+                    if (list_2.hasOwnProperty('contacts')) {
+
+                        html += '<div class=\'wrap3\'>';
+                        $.each(list_2.contacts, function (i1, list_3) {
+                            html += '<div class=\'third_list\' id=' + list_3.id + ' >' + list_3.name + '</div>';
+                        });
+                        html += '</div>';
+                    }
+                });
+                html += '</div>';
+            }
+            html += '</div>';
+        });
+
+
+        $('#contacts').html(html);
+
+        //events
+        $('.first_list').click(function () {
+            $('.wrap2, .wrap3').hide();
+            $('.first_list, .second_list, .third_list').removeClass('highlighted');
+            $(this).addClass('highlighted');
+            $(this).siblings('.wrap2').first().show();
+
+        });
+        $('.second_list').click(function () {
+            $('.wrap3').hide();
+            $('.first_list, .second_list, .third_list').removeClass('highlighted');
+            $(this).addClass('highlighted');
+            $(this).next('.wrap3').show();            
+        });
+        $('.third_list').click(function () {
+            $('.first_list, .second_list, .third_list').removeClass('highlighted');
+            $(this).addClass('highlighted');
+        });
+    </script>
+</body>
+
+</html>
