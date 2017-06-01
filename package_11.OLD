@@ -1,0 +1,22 @@
+{
+  "name": "test_trainlogic",
+  "version": "1.0.0",
+  "description": "test_trainlogic",
+  "main": "test.html",
+  "dependencies": {
+    "jquery": "^1.11.1"
+  },
+  "devDependencies": {},
+  // "scripts": {
+  //   "test": "echo \"Error: no test specified\" && exit 1"
+  // },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shahar13/trainlogic_home_test.git"
+  },
+  "author": "Shahar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shahar13/trainlogic_home_test/issues"
+  }
+}
